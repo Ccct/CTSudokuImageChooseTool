@@ -12,12 +12,17 @@
 #import "ViewController.h"
 #import "SudokuImageCell.h"
 #import "LXJImagePicker.h"
+#import "ImagePicker.h"
+#import "UIView+Extension.h"
 
 @interface ViewController ()
 <UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *tableView;
+
 @property (nonatomic, strong) NSMutableArray *photoImgArr;
+
+@property (nonatomic,strong) ImagePicker *photoView;
 
 @end
 
@@ -44,13 +49,16 @@
         float collectH = 0;
         if(_photoImgArr.count > 0){
             count = (_photoImgArr.count - 1) / 3 + 1;
-            collectH = (WIDTH_SCREEN-24-20)/3 * count + 90;
+            collectH = (WIDTH_SCREEN-24-20)/3 * count + 30;
         }else{
-            collectH = 90;
+            collectH = (WIDTH_SCREEN-24-20)/3 * 1 + 30;
         }
-        return collectH + 90;
+        return collectH;
     }
-    return 55;
+    else if(indexPath.row == 1){
+        return self.photoView.frameHeight;
+    }
+    return 50;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -93,7 +101,19 @@
         [photoCell setImageArr:_photoImgArr];
         return photoCell;
     }
-    
+    else if (indexPath.row == 1){
+        
+        static NSString *cellIdStr =@"cellId";
+        UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:cellIdStr];
+        if(!cell) {
+            cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdStr];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.textLabel.font =[UIFont systemFontOfSize:16];
+            cell.textLabel.textColor = [UIColor blackColor];
+        }
+        [cell addSubview:self.photoView];
+        return cell;
+    }
     return [[UITableViewCell alloc]init];
 }
 
@@ -129,5 +149,19 @@
     return _tableView;
 }
 
+- (ImagePicker *)photoView{
+    if(!_photoView) {
+        _photoView = [[ImagePicker alloc] initWithFrame:CGRectMake(10, 0, WIDTH_SCREEN-20, 100)];
+        _photoView.maxSelect = 9;
+        //初始化图片选择器
+        [self.photoView relaodWithImageArr:[NSMutableArray array]];
+        __weak typeof(self) weakSelf = self;
+        self.photoView.reloadHeight = ^(CGFloat newHeight) {
+            weakSelf.photoView.frameHeight = newHeight;
+            [weakSelf.tableView reloadData];
+        };
+    }
+    return _photoView;
+}
 
 @end
