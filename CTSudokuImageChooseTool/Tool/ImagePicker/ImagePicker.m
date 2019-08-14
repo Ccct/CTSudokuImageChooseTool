@@ -5,8 +5,8 @@
 
 #import "ImagePicker.h"
 #import "PhotoCell.h"
-#import "JGPBBrowserController.h"
-#import "JGPBPhoto.h"
+//#import "JGPBBrowserController.h"
+//#import "JGPBPhoto.h"
 #import <TZImagePickerController.h>
 
 @interface ImagePicker ()<UICollectionViewDelegate,UICollectionViewDataSource,TZImagePickerControllerDelegate>
@@ -215,16 +215,7 @@
     }
     //查看大图
     else{
-        NSMutableArray *photos = [NSMutableArray arrayWithCapacity:0];
-        //1. 组装图片
-        for (int i = 0; i < self.imageArr.count; i ++ ) {
-             JGPBPhoto *photo = [[JGPBPhoto alloc] init];
-             photo.image = self.imageArr[i];
-            [photos addObject:photo];
-        }
-        // 2.显示相册
-        JGPBBrowserController *browser = [[JGPBBrowserController alloc] initWithPhotos:photos index:indexPath.row];
-        [browser show];
+
     }
 }
 
