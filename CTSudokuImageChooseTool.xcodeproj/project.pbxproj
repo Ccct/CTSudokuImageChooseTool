@@ -22,7 +22,7 @@
 		0EF4428323041235009270D5 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4427123041235009270D5 /* FLAnimatedImage.m */; };
 		0EF4428423041235009270D5 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4427223041235009270D5 /* FLAnimatedImageView.m */; };
 		25852A7792F056DEA6946DC8 /* Pods_CTSudokuImageChooseTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD803DFB34FBDA23EE4F8B59 /* Pods_CTSudokuImageChooseTool.framework */; };
-		6395D02F22E6EB6300983F9E /* ImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6395D02B22E6EB6300983F9E /* ImagePicker.m */; };
+		6395D02F22E6EB6300983F9E /* CTImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6395D02B22E6EB6300983F9E /* CTImagePicker.m */; };
 		6395D03022E6EB6300983F9E /* img.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6395D02C22E6EB6300983F9E /* img.xcassets */; };
 		6395D03122E6EB6300983F9E /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6395D02D22E6EB6300983F9E /* PhotoCell.m */; };
 		6395D03722E6EBB000983F9E /* UIView+FitIOS11.m in Sources */ = {isa = PBXBuildFile; fileRef = 6395D03522E6EBB000983F9E /* UIView+FitIOS11.m */; };
@@ -58,10 +58,10 @@
 		0EF4427423041235009270D5 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
 		0EF4427523041235009270D5 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
 		6395D02A22E6EB6300983F9E /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
-		6395D02B22E6EB6300983F9E /* ImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePicker.m; sourceTree = "<group>"; };
+		6395D02B22E6EB6300983F9E /* CTImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTImagePicker.m; sourceTree = "<group>"; };
 		6395D02C22E6EB6300983F9E /* img.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = img.xcassets; sourceTree = "<group>"; };
 		6395D02D22E6EB6300983F9E /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
-		6395D02E22E6EB6300983F9E /* ImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePicker.h; sourceTree = "<group>"; };
+		6395D02E22E6EB6300983F9E /* CTImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTImagePicker.h; sourceTree = "<group>"; };
 		6395D03322E6EBB000983F9E /* UIView+FitIOS11.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FitIOS11.h"; sourceTree = "<group>"; };
 		6395D03422E6EBB000983F9E /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		6395D03522E6EBB000983F9E /* UIView+FitIOS11.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FitIOS11.m"; sourceTree = "<group>"; };
@@ -174,10 +174,10 @@
 			isa = PBXGroup;
 			children = (
 				6395D02A22E6EB6300983F9E /* PhotoCell.h */,
-				6395D02B22E6EB6300983F9E /* ImagePicker.m */,
+				6395D02B22E6EB6300983F9E /* CTImagePicker.m */,
 				6395D02C22E6EB6300983F9E /* img.xcassets */,
 				6395D02D22E6EB6300983F9E /* PhotoCell.m */,
-				6395D02E22E6EB6300983F9E /* ImagePicker.h */,
+				6395D02E22E6EB6300983F9E /* CTImagePicker.h */,
 			);
 			path = ImagePicker;
 			sourceTree = "<group>";
@@ -321,7 +321,7 @@
 				0E83064722CCE3BB00E5F0CF /* ViewController.m in Sources */,
 				0EF4428123041235009270D5 /* UIColor+ColorChange.m in Sources */,
 				6395D03822E6EBB000983F9E /* UIView+Extension.m in Sources */,
-				6395D02F22E6EB6300983F9E /* ImagePicker.m in Sources */,
+				6395D02F22E6EB6300983F9E /* CTImagePicker.m in Sources */,
 				0E83066722CCF88700E5F0CF /* VideoOperateTool.m in Sources */,
 				6395D03722E6EBB000983F9E /* UIView+FitIOS11.m in Sources */,
 				0EF4428423041235009270D5 /* FLAnimatedImageView.m in Sources */,

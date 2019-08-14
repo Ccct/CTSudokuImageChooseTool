@@ -12,7 +12,7 @@
 #import "ViewController.h"
 #import "SudokuImageCell.h"
 #import "LXJImagePicker.h"
-#import "ImagePicker.h"
+#import "CTImagePicker.h"
 #import "UIView+Extension.h"
 
 @interface ViewController ()
@@ -22,7 +22,7 @@
 
 @property (nonatomic, strong) NSMutableArray *photoImgArr;
 
-@property (nonatomic,strong) ImagePicker *photoView;
+@property (nonatomic,strong) CTImagePicker *photoView;
 
 @end
 
@@ -149,9 +149,9 @@
     return _tableView;
 }
 
-- (ImagePicker *)photoView{
+- (CTImagePicker *)photoView{
     if(!_photoView) {
-        _photoView = [[ImagePicker alloc] initWithFrame:CGRectMake(10, 0, WIDTH_SCREEN-20, 100)];
+        _photoView = [[CTImagePicker alloc] initWithFrame:CGRectMake(10, 0, WIDTH_SCREEN-20, 100)];
         _photoView.maxSelect = 9;
         //初始化图片选择器
         [self.photoView relaodWithImageArr:[NSMutableArray array]];

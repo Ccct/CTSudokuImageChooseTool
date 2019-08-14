@@ -9,7 +9,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface ImagePicker : UIView
+@interface CTImagePicker : UIView
 
 @property (nonatomic,strong) NSMutableArray *imageArr;  //当前图片列表
 

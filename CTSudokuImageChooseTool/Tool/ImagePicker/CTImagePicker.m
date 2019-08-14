@@ -3,19 +3,19 @@
 //
 //  Created by 白月光 on 2018/12/6.
 
-#import "ImagePicker.h"
+#import "CTImagePicker.h"
 #import "PhotoCell.h"
 //#import "JGPBBrowserController.h"
 //#import "JGPBPhoto.h"
 #import <TZImagePickerController.h>
 
-@interface ImagePicker ()<UICollectionViewDelegate,UICollectionViewDataSource,TZImagePickerControllerDelegate>
+@interface CTImagePicker ()<UICollectionViewDelegate,UICollectionViewDataSource,TZImagePickerControllerDelegate>
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property(nonatomic, strong) UILongPressGestureRecognizer *longPress;
 @property (nonatomic,assign) BOOL isMoveing;
 @end
 
-@implementation ImagePicker
+@implementation CTImagePicker
 
 - (id)initWithFrame:(CGRect)frame{
     if (self =[super initWithFrame:frame]) {
@@ -233,7 +233,7 @@
 - (void)relaodWithImageArr:(NSMutableArray*)arr;
 {
      self.imageArr = arr;
-     self.collectionView.frameHeight = [ImagePicker getMyHeightWithCount:(int)arr.count WithWidth:self.frameWidth];
+     self.collectionView.frameHeight = [CTImagePicker getMyHeightWithCount:(int)arr.count WithWidth:self.frameWidth];
     [self.collectionView reloadData];
     
      if(self.reloadHeight) {
