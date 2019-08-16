@@ -48,10 +48,15 @@
         unsigned long int count = 0;
         float collectH = 0;
         if(_photoImgArr.count > 0){
-            count = (_photoImgArr.count - 1) / 3 + 1;
-            collectH = (WIDTH_SCREEN-24-20)/3 * count + 30;
+            if(_photoImgArr.count == 9){ //选到了9张的情况，后面没有“+”按钮
+                count = (_photoImgArr.count) / 3;
+            }else{//还未选到9张的情况，后面有“+”按钮
+                count = (_photoImgArr.count) / 3 + 1;
+            }
+            collectH = (WIDTH_SCREEN-24-20) / 3 * count + 30;
         }else{
-            collectH = (WIDTH_SCREEN-24-20)/3 * 1 + 30;
+            //只有一张图片的时候
+            collectH = (WIDTH_SCREEN-24-20) / 3 * 1 + 30;
         }
         return collectH;
     }
@@ -103,21 +108,20 @@
     }
     else if (indexPath.row == 1){
         
-        static NSString *cellIdStr =@"cellId";
+        static NSString *cellIdStr = @"cellId";
         UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:cellIdStr];
         if(!cell) {
-            cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdStr];
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdStr];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.textLabel.font =[UIFont systemFontOfSize:16];
             cell.textLabel.textColor = [UIColor blackColor];
+            [cell addSubview:self.photoView];
         }
-        [cell addSubview:self.photoView];
         return cell;
     }
     return [[UITableViewCell alloc]init];
 }
 
-/// 刷新“广告内容”cell
 - (void)reloadAdvPhotosCell{
     NSIndexPath *indexPath= [NSIndexPath indexPathForRow:0 inSection:0];
     [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
@@ -151,12 +155,14 @@
 
 - (CTImagePicker *)photoView{
     if(!_photoView) {
-        _photoView = [[CTImagePicker alloc] initWithFrame:CGRectMake(10, 0, WIDTH_SCREEN-20, 100)];
+        _photoView = [[CTImagePicker alloc] initWithFrame:CGRectMake(10, 0, WIDTH_SCREEN-20, 200)];
         _photoView.maxSelect = 9;
+        _photoView.rowCount  = 3;
         //初始化图片选择器
         [self.photoView relaodWithImageArr:[NSMutableArray array]];
         __weak typeof(self) weakSelf = self;
         self.photoView.reloadHeight = ^(CGFloat newHeight) {
+            
             weakSelf.photoView.frameHeight = newHeight;
             [weakSelf.tableView reloadData];
         };

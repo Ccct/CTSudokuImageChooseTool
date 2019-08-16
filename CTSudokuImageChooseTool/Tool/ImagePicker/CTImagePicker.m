@@ -13,6 +13,7 @@
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property(nonatomic, strong) UILongPressGestureRecognizer *longPress;
 @property (nonatomic,assign) BOOL isMoveing;
+@property (nonatomic,assign) NSInteger selectedCount; //已经选了多少张
 @end
 
 @implementation CTImagePicker
@@ -24,6 +25,10 @@
         if(_maxSelect == 0){
             _maxSelect = 9;
         }
+        if(_rowCount == 0){
+            _rowCount = 3;
+        }
+        _selectedCount = 0;
     }
     return self;
 }
@@ -89,7 +94,8 @@
 //设置item大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return  CGSizeMake((self.frameWidth-60)/5,((self.frameWidth-60)/5));
+    //-60是减去所有间距
+    return  CGSizeMake((self.frameWidth-60)/_rowCount,((self.frameWidth-60)/_rowCount));
 }
 
 //item之间的距离
@@ -198,9 +204,12 @@
         
         TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:_maxSelect delegate:self];
         imagePickerVc.allowPickingVideo = NO;
+        imagePickerVc.maxImagesCount = _maxSelect - _selectedCount;
         [[self currentViewController] presentViewController:imagePickerVc animated:YES completion:nil];
         __weak typeof(self) weakSelf = self;
         [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray *imageArr, NSArray *array,BOOL success) {
+            
+            weakSelf.selectedCount += imageArr.count;
             
             for(NSInteger i = 0; i < array.count; i++) {
                 
@@ -221,6 +230,9 @@
 
 //删除图片
 - (void)deleteBtnClick:(UIButton*)button{
+    
+    self.selectedCount -= 1;
+    
     if(button.tag - 1314 < self.imageArr.count) {
       [self.imageArr removeObjectAtIndex:button.tag-1314];//删除当前图片列表中该数据对象
       [self relaodWithImageArr:self.imageArr];
@@ -233,7 +245,7 @@
 - (void)relaodWithImageArr:(NSMutableArray*)arr;
 {
      self.imageArr = arr;
-     self.collectionView.frameHeight = [CTImagePicker getMyHeightWithCount:(int)arr.count WithWidth:self.frameWidth];
+     self.collectionView.frameHeight = [self getMyHeightWithCount:(int)arr.count WithWidth:self.frameWidth];
     [self.collectionView reloadData];
     
      if(self.reloadHeight) {
@@ -242,13 +254,13 @@
 }
 
 //获取自身高度
-+ (CGFloat)getMyHeightWithCount:(int)count WithWidth:(CGFloat)width;
+- (CGFloat)getMyHeightWithCount:(int)count WithWidth:(CGFloat)width;
 {
     if (count < 9) {
         count = count+1;
     }
-    int lineCount = (count - 1) / 5 + 1 ;// 计算得到行数
-    CGFloat resultWidth = (width-40)/5;
+    int lineCount = (count - 1) / _rowCount + 1 ;// 计算得到行数
+    CGFloat resultWidth = (width-40)/_rowCount;
     return lineCount*resultWidth + (lineCount+1)*10;
 }
 
